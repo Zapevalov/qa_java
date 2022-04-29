@@ -1,32 +1,34 @@
 package com.example;
 
-import java.util.List;
+import com.example.lionTypes.ILionType;
 
-public class Lion {
+public class Lion extends Feline {
+    private ILionType lionType;
+    private boolean hasMane;
+    private int kittens;
 
-    boolean hasMane;
 
-    public Lion(String sex) throws Exception {
-        if ("Самец".equals(sex)) {
-            hasMane = true;
-        } else if ("Самка".equals(sex)) {
-            hasMane = false;
-        } else {
-            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
+    public Lion(ILionType lionType, LionSexEnum sex) throws Exception  {
+        this.lionType = lionType;
+
+        switch (sex){
+            case MALE: hasMane = true; break;
+            case FEMALE: hasMane = false; break;
+            default:  throw new Exception("Используйте допустимые значения пола животного - самец или самка");
         }
     }
 
-    Feline feline = new Feline();
-
-    public int getKittens() {
-        return feline.getKittens();
+    public Lion(ILionType lionType, LionSexEnum sex, int kittens) throws Exception  {
+      this(lionType, sex);
+      this.kittens = kittens;
     }
 
     public boolean doesHaveMane() {
         return hasMane;
     }
 
-    public List<String> getFood() throws Exception {
-        return feline.getFood("Хищник");
+    @Override
+    public int getKittens() {
+        return kittens;
     }
 }

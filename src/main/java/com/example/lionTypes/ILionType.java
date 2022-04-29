@@ -1,8 +1,6 @@
 package com.example.lionTypes;
 
-import com.example.LionSexEnum;
-
-public interface LionInterface {
+public interface ILionType {
     double getAverageWeight();
     String getDesc();
 }

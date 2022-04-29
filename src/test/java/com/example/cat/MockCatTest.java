@@ -1,6 +1,9 @@
-package com.example;
+package com.example.cat;
 
 
+import com.example.Cat;
+import com.example.Feline;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -17,13 +20,13 @@ public class MockCatTest {
     Feline feline;
 
     @Test
-    public void catGetFoodLikePredatorMockTest() throws Exception {
+    public void catGetFoodLikePredatorMock() throws Exception {
         Mockito.when(feline.eatMeat()).thenReturn(asList("1", "2", "3"));
-        assertThat(new Cat(feline).getFood(), equalTo(asList("1", "2", "3")));
+        MatcherAssert.assertThat(new Cat(feline).getFood(), equalTo(asList("1", "2", "3")));
     }
 
     @Test
-    public void catGetSoundShouldReturnMeowTest() {
+    public void catMeows() {
         assertThat(new Cat(feline).getSound(), equalTo("Meow"));
     }
 }
