@@ -1,9 +1,11 @@
 package com.example;
 
-import java.util.List;
-
 public class Cat extends Feline {
-    private int kittensCount;
+    private final int kittensCount;
+
+    public Cat() {
+        this.kittensCount = 0;
+    }
 
     public Cat(int kittensCount) {
         this.kittensCount = kittensCount;
@@ -14,7 +16,7 @@ public class Cat extends Feline {
     }
 
     @Override
-    public int getKittens() {
+    public int getKittensCount() {
         return kittensCount;
     }
 }

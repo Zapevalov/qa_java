@@ -1,7 +1,8 @@
 package com.example.lionTypes;
 
-public class Parsica implements ILionType {
+public class Persica implements ILionType {
     private final double averageWeight = 170;
+    private final String latinName = "Panthera leo persica";
 
     @Override
     public double getAverageWeight() {
@@ -14,5 +15,10 @@ public class Parsica implements ILionType {
                 "перетаскивают добычу по земле. Самцы имеют цвет от желтовато-оранжевого до темно-коричневого, " +
                 "львицы песочные или коричнево-желтоватые. Грива львов темного цвета, редко черная, короче, " +
                 "чем у африканского льва.";
+    }
+
+    @Override
+    public String getLatinName() {
+        return latinName;
     }
 }

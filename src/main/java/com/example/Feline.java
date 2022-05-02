@@ -8,9 +8,9 @@ public abstract class Feline extends Animal implements Predator {
         return "Feline";
     }
 
-    public List<String> getFood() throws Exception {
+    public List<String> getBasicDiet() {
         return super.getFood(AnimalCategory.CARNIVORES);
     }
 
-    public abstract int getKittens();
+    public abstract int getKittensCount();
 }
