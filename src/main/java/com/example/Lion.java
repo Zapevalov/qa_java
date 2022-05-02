@@ -1,32 +1,58 @@
 package com.example;
 
-import java.util.List;
+import com.example.exception.NotSuchSexException;
+import com.example.lionTypes.Bleyenberghi;
+import com.example.lionTypes.ILionType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Lion {
+public class Lion extends Feline {
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
-    boolean hasMane;
+    private ILionType lionType;
+    private boolean hasMane;
+    private int kittensCount;
 
-    public Lion(String sex) throws Exception {
-        if ("Самец".equals(sex)) {
-            hasMane = true;
-        } else if ("Самка".equals(sex)) {
-            hasMane = false;
-        } else {
-            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
+    public Lion() {
+        this.lionType = new Bleyenberghi();
+        this.hasMane =  true;
+        this.kittensCount = 0;
+    }
+
+    public Lion(ILionType lionType, LionSexEnum sex) throws NotSuchSexException  {
+        this.lionType = lionType;
+
+        switch (sex){
+            case MALE: hasMane = true; break;
+            case FEMALE: hasMane = false; break;
+            default: {
+                logger.debug(String.format("Sex %s is not exist", sex));
+                throw new NotSuchSexException();
+            }
         }
     }
 
-    Feline feline = new Feline();
-
-    public int getKittens() {
-        return feline.getKittens();
+    public Lion(ILionType lionType, LionSexEnum sex, int kittensCount) throws NotSuchSexException  {
+      this(lionType, sex);
+      this.kittensCount = kittensCount;
     }
 
-    public boolean doesHaveMane() {
+    public boolean hasMane() {
         return hasMane;
     }
 
-    public List<String> getFood() throws Exception {
-        return feline.getFood("Хищник");
+    @Override
+    public int getKittensCount() {
+        return kittensCount;
     }
+
+    public String getTypeDescription(){
+        return lionType.getDesc();
+    }
+
+    public double getAverageWeight(){
+        return lionType.getAverageWeight();
+    }
+
+    public String getLatinName(){return lionType.getLatinName();}
 }
